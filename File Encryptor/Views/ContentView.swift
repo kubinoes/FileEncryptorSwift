@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     var body: some View {
         
@@ -15,7 +16,7 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
-            Button("Encrypt a file") {
+            Button("Encrypt") {
                 openFilePicker()
             }
         }
@@ -38,7 +39,8 @@ func openFilePicker() {
         let results = dialog.urls // pathname of the file
         
         for result in results {
-            print(result.path)
+            // TODO call for encryption from viewmModel
+            
         }
     } else { return }
 }
