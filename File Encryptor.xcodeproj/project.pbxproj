@@ -7,22 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B53504A28F4864200DB8241 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B53504928F4864200DB8241 /* FileManager.swift */; };
 		3B60BC2928E60BB600E5EE6C /* File_EncryptorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B60BC2828E60BB600E5EE6C /* File_EncryptorApp.swift */; };
 		3B60BC2B28E60BB600E5EE6C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B60BC2A28E60BB600E5EE6C /* ContentView.swift */; };
 		3B60BC2D28E60BB800E5EE6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B60BC2C28E60BB800E5EE6C /* Assets.xcassets */; };
 		3B60BC3028E60BB800E5EE6C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B60BC2F28E60BB800E5EE6C /* Preview Assets.xcassets */; };
+		3BBBE93428F5F51A0020C4B6 /* icon-doc.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BBBE93328F5F51A0020C4B6 /* icon-doc.png */; };
 		3BC9D30528F3465800B59808 /* KeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9D30428F3465800B59808 /* KeyManager.swift */; };
 		3BC9D30928F3503B00B59808 /* FileCipherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9D30828F3503B00B59808 /* FileCipherViewModel.swift */; };
 		3BC9D30B28F350C600B59808 /* Cipher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC9D30A28F350C600B59808 /* Cipher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B53504928F4864200DB8241 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		3B60BC2528E60BB600E5EE6C /* File Encryptor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "File Encryptor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B60BC2828E60BB600E5EE6C /* File_EncryptorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File_EncryptorApp.swift; sourceTree = "<group>"; };
 		3B60BC2A28E60BB600E5EE6C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3B60BC2C28E60BB800E5EE6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B60BC2F28E60BB800E5EE6C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3B60BC3128E60BB800E5EE6C /* File_Encryptor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = File_Encryptor.entitlements; sourceTree = "<group>"; };
+		3BBBE93128F5D4E20020C4B6 /* File-Encryptor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "File-Encryptor-Info.plist"; sourceTree = SOURCE_ROOT; };
+		3BBBE93328F5F51A0020C4B6 /* icon-doc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-doc.png"; sourceTree = "<group>"; };
 		3BC9D30428F3465800B59808 /* KeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyManager.swift; sourceTree = "<group>"; };
 		3BC9D30828F3503B00B59808 /* FileCipherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCipherViewModel.swift; sourceTree = "<group>"; };
 		3BC9D30A28F350C600B59808 /* Cipher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cipher.swift; sourceTree = "<group>"; };
@@ -58,11 +63,12 @@
 		3B60BC2728E60BB600E5EE6C /* File Encryptor */ = {
 			isa = PBXGroup;
 			children = (
+				3BBBE93228F5F4B20020C4B6 /* Resources */,
+				3BBBE93128F5D4E20020C4B6 /* File-Encryptor-Info.plist */,
 				3BC9D30728F34FBC00B59808 /* Views */,
 				3BC9D30628F34FB400B59808 /* ViewModels */,
 				3BC9D30328F3464600B59808 /* Models */,
 				3B60BC2828E60BB600E5EE6C /* File_EncryptorApp.swift */,
-				3B60BC2C28E60BB800E5EE6C /* Assets.xcassets */,
 				3B60BC3128E60BB800E5EE6C /* File_Encryptor.entitlements */,
 				3B60BC2E28E60BB800E5EE6C /* Preview Content */,
 			);
@@ -77,11 +83,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		3BBBE93228F5F4B20020C4B6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3BBBE93328F5F51A0020C4B6 /* icon-doc.png */,
+				3B60BC2C28E60BB800E5EE6C /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		3BC9D30328F3464600B59808 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				3BC9D30428F3465800B59808 /* KeyManager.swift */,
 				3BC9D30A28F350C600B59808 /* Cipher.swift */,
+				3B53504928F4864200DB8241 /* FileManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -162,6 +178,7 @@
 			files = (
 				3B60BC3028E60BB800E5EE6C /* Preview Assets.xcassets in Resources */,
 				3B60BC2D28E60BB800E5EE6C /* Assets.xcassets in Resources */,
+				3BBBE93428F5F51A0020C4B6 /* icon-doc.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +192,7 @@
 				3B60BC2B28E60BB600E5EE6C /* ContentView.swift in Sources */,
 				3B60BC2928E60BB600E5EE6C /* File_EncryptorApp.swift in Sources */,
 				3BC9D30B28F350C600B59808 /* Cipher.swift in Sources */,
+				3B53504A28F4864200DB8241 /* FileManager.swift in Sources */,
 				3BC9D30528F3465800B59808 /* KeyManager.swift in Sources */,
 				3BC9D30928F3503B00B59808 /* FileCipherViewModel.swift in Sources */,
 			);
@@ -310,6 +328,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "File-Encryptor-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -337,6 +356,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "File-Encryptor-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

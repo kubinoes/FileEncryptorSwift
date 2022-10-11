@@ -17,9 +17,9 @@ struct Cipher {
         // encrypt data
         let encryptedData = try AES.GCM.seal(userData, using: key)
         // get cipher text combined with nonce and auth tag
-        let cipher = encryptedData.combined!
-        // return
-        return cipher
+        let combinedCipher = encryptedData.combined!
+        // return the combined cipher
+        return combinedCipher
     }
     func decryptCodableObject<T: Codable>(_ type: T.Type, from data: Data, using key: SymmetricKey) throws -> T {
         // put the data in a sealed box

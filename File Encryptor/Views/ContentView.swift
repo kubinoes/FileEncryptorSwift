@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @ObservedObject var cipherVM: FileCipherViewModel
     var body: some View {
         
         VStack {
@@ -17,7 +18,11 @@ struct ContentView: View {
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
             Button("Encrypt") {
-                openFilePicker()
+                do {
+                    try cipherVM.showSavePanel()
+                } catch {
+                    print(error)
+                }
             }
         }
         .padding()
@@ -25,28 +30,9 @@ struct ContentView: View {
     
 }
 
-func openFilePicker() {
-    let dialog = NSOpenPanel()
-    
-    dialog.title = "Choose a file you wish to encrypt"
-    dialog.showsResizeIndicator = true
-    dialog.showsHiddenFiles = false
-    dialog.allowsMultipleSelection = true
-    dialog.canChooseFiles = true
-    dialog.canChooseDirectories = true
-    
-    if dialog.runModal() == NSApplication.ModalResponse.OK {
-        let results = dialog.urls // pathname of the file
-        
-        for result in results {
-            // TODO call for encryption from viewmModel
-            
-        }
-    } else { return }
-}
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        let cipherVM = FileCipherViewModel()
+        ContentView(cipherVM: cipherVM)
     }
 }

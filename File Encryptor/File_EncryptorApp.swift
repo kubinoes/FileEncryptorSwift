@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct File_EncryptorApp: App {
+    let cipherVM = FileCipherViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(cipherVM: cipherVM)
         }
     }
 }
