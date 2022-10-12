@@ -19,11 +19,12 @@ class FileCipherViewModel: ObservableObject {
     
     func encrypt() {
         let key = keyManager.derivedKey(form: "pizza")
-        if let readUrl = showOpenPanel() {
+        let openContentTypeArray = [UTType]()
+        if let readUrl = showOpenPanel(contentTypeArray: openContentTypeArray) {
             do {
                 let encryptedData = try cipher.encryptCodableObject(object: Data(contentsOf: readUrl), using: key)
-                let contentTypeArray = [UTType("com.schovanec.fileEncryptor.EncryptedData")!]
-                if let writeUrl = showSavePanel(contentTypeArray: contentTypeArray) {
+                let saveContentTypeArray = [UTType("com.schovanec.fileEncryptor.EncryptedData")!]
+                if let writeUrl = showSavePanel(contentTypeArray: saveContentTypeArray) {
                     print(writeUrl)
                     try encryptedData.write(to: writeUrl)
                 }
@@ -36,12 +37,13 @@ class FileCipherViewModel: ObservableObject {
     
     func decrypt() {
         let key = keyManager.derivedKey(form: "pizza")
-        if let readUrl = showOpenPanel() {
+        let openContentTypeArray = [UTType("com.schovanec.fileEncryptor.EncryptedData")!]
+        if let readUrl = showOpenPanel(contentTypeArray: openContentTypeArray) {
             do {
                 let decryptedData = try cipher.decryptCodableObject(Data.self, from: Data(contentsOf: readUrl), using: key)
                 // empty array to default the save panel to allow any type
-                let contentTypeArray = [UTType]()
-                if let writeUrl = showSavePanel(contentTypeArray: contentTypeArray) {
+                let saveContentTypeArray = [UTType]()
+                if let writeUrl = showSavePanel(contentTypeArray: saveContentTypeArray) {
                     try decryptedData.write(to: writeUrl)
                 }
             } catch {
@@ -51,7 +53,7 @@ class FileCipherViewModel: ObservableObject {
         }
     }
     
-    func showOpenPanel() -> URL? {
+    func showOpenPanel(contentTypeArray: [UTType]) -> URL? {
         let openPanel = NSOpenPanel()
         
         openPanel.title = "Choose a file you wish to encrypt"
@@ -60,6 +62,7 @@ class FileCipherViewModel: ObservableObject {
         openPanel.allowsMultipleSelection = false // TODO add multiple files encryption and decryption
         openPanel.canChooseFiles = true
         openPanel.canChooseDirectories = true
+        openPanel.allowedContentTypes = contentTypeArray
         
         let response = openPanel.runModal()
         return response == .OK ? openPanel.url : nil
