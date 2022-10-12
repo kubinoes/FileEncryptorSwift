@@ -17,6 +17,22 @@ class FileCipherViewModel: ObservableObject {
         self.keyManager = KeyManager()
     }
     
+    func encrypt() {
+        let key = keyManager.derivedKey(form: "pizza")
+        if let readUrl = showOpenPanel() {
+            do {
+                let encryptedData = try cipher.encryptCodableObject(object: Data(contentsOf: readUrl), using: key)
+                if let writeUrl = showSavePanel() {
+                    print(writeUrl)
+                    try encryptedData.write(to: writeUrl)
+                }
+            } catch {
+                print("Encryption failed")
+                print(error)
+            }
+        }
+    }
+    
     func showOpenPanel() -> URL? {
         let openPanel = NSOpenPanel()
         
@@ -30,7 +46,6 @@ class FileCipherViewModel: ObservableObject {
         let response = openPanel.runModal()
         return response == .OK ? openPanel.url : nil
     }
-    
     func showSavePanel() -> URL? {
         let savePanel = NSSavePanel()
         let contentType = UTType("com.schovanec.fileEncryptor.EncryptedData")

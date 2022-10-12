@@ -18,11 +18,7 @@ struct ContentView: View {
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
             Button("Encrypt") {
-                do {
-                    try cipherVM.showSavePanel()
-                } catch {
-                    print(error)
-                }
+                cipherVM.encrypt()
             }
         }
         .padding()
