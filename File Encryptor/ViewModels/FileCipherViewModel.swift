@@ -22,12 +22,30 @@ class FileCipherViewModel: ObservableObject {
         if let readUrl = showOpenPanel() {
             do {
                 let encryptedData = try cipher.encryptCodableObject(object: Data(contentsOf: readUrl), using: key)
-                if let writeUrl = showSavePanel() {
+                let contentTypeArray = [UTType("com.schovanec.fileEncryptor.EncryptedData")!]
+                if let writeUrl = showSavePanel(contentTypeArray: contentTypeArray) {
                     print(writeUrl)
                     try encryptedData.write(to: writeUrl)
                 }
             } catch {
                 print("Encryption failed")
+                print(error)
+            }
+        }
+    }
+    
+    func decrypt() {
+        let key = keyManager.derivedKey(form: "pizza")
+        if let readUrl = showOpenPanel() {
+            do {
+                let decryptedData = try cipher.decryptCodableObject(Data.self, from: Data(contentsOf: readUrl), using: key)
+                // empty array to default the save panel to allow any type
+                let contentTypeArray = [UTType]()
+                if let writeUrl = showSavePanel(contentTypeArray: contentTypeArray) {
+                    try decryptedData.write(to: writeUrl)
+                }
+            } catch {
+                print("Decryption failed")
                 print(error)
             }
         }
@@ -46,11 +64,10 @@ class FileCipherViewModel: ObservableObject {
         let response = openPanel.runModal()
         return response == .OK ? openPanel.url : nil
     }
-    func showSavePanel() -> URL? {
+    func showSavePanel(contentTypeArray: [UTType]) -> URL? {
         let savePanel = NSSavePanel()
-        let contentType = UTType("com.schovanec.fileEncryptor.EncryptedData")
         
-        savePanel.allowedContentTypes = [contentType!]
+        savePanel.allowedContentTypes = contentTypeArray
         savePanel.canCreateDirectories = true
         savePanel.isExtensionHidden = false
         savePanel.allowsOtherFileTypes = false

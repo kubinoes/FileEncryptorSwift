@@ -17,9 +17,15 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
-            Button("Encrypt") {
-                cipherVM.encrypt()
+            HStack {
+                Button("Encrypt") {
+                    cipherVM.encrypt()
+                }
+                Button("Decrypt") {
+                    cipherVM.decrypt()
+                }
             }
+            
         }
         .padding()
     }
