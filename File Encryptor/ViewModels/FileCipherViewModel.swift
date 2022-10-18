@@ -12,15 +12,23 @@ class FileCipherViewModel: ObservableObject {
     @Published var cipher: Cipher
     var keyManager: KeyManager
     
+    var fileUrl: URL?
+    
     init() {
         self.cipher = Cipher()
         self.keyManager = KeyManager()
     }
     
-    func encrypt() {
-        let key = keyManager.derivedKey(form: "pizza")
+    func selectFile() {
         let openContentTypeArray = [UTType]()
         if let readUrl = showOpenPanel(contentTypeArray: openContentTypeArray) {
+            fileUrl = readUrl
+        }
+    }
+    
+    func encrypt() {
+        let key = keyManager.derivedKey(form: "pizza")
+        if let readUrl = fileUrl {
             do {
                 let encryptedData = try cipher.encryptCodableObject(object: Data(contentsOf: readUrl), using: key)
                 let saveContentTypeArray = [UTType("com.schovanec.fileEncryptor.EncryptedData")!]
@@ -70,6 +78,8 @@ class FileCipherViewModel: ObservableObject {
     func showSavePanel(contentTypeArray: [UTType]) -> URL? {
         let savePanel = NSSavePanel()
         
+        let fileName = fileUrl!.lastPathComponent
+        
         savePanel.allowedContentTypes = contentTypeArray
         savePanel.canCreateDirectories = true
         savePanel.isExtensionHidden = false
@@ -77,7 +87,7 @@ class FileCipherViewModel: ObservableObject {
         savePanel.title = "Save your encrypted file"
         savePanel.message = "Choose a folder and a name for your encrypted file."
         savePanel.nameFieldLabel = "File name:"
-        savePanel.nameFieldStringValue = "" // TODO put a name of the original file here
+        savePanel.nameFieldStringValue = fileName // TODO put a name of the original file here
         
         let response = savePanel.runModal()
         return response == .OK ? savePanel.url : nil

@@ -13,10 +13,9 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Button("Select a file") {
+                cipherVM.selectFile()
+            }
             HStack {
                 Button("Encrypt") {
                     cipherVM.encrypt()
